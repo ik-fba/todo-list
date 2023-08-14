@@ -36,10 +36,11 @@ header {
 .navigation a {
   position: relative;
   font-size: 1.1em;
-  color: #fff;
+  color: brown;
   text-decoration: none;
   font-weight: 500;
   margin-left: 40px;
+  font-weight: bold;
 }
 
 .navigation a::after {
@@ -70,7 +71,7 @@ header {
   border-radius: 6px;
   cursor: pointer;
   font-size: 1.1em;
-  color: #000;
+  color: brown;
   font-weight: 500;
   margin-left: 40px;
   transition: .5s;
