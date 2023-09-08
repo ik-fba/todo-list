@@ -1,20 +1,38 @@
-const wrapper = document.querySelector('.wrapper');
-const loginLink = document.querySelector('.login-link');
-const registerLink = document.querySelector('.register-link');
-const btnPopup = document.querySelector('.btnLogin-popup')
-const iconClose = document.querySelector('.icon-close')
+const inputBox = document.getElementById("input-box");
+const listContainer = document.getElementById("list-container");
 
-registerLink.addEventListener('click', ()=> {
-  wrapper.classList.add('active');
-})
+function addTask() {
+  if (inputBox.value === "") {
+    alert("You must write something!");
+  } else {
+    let li = document.createElement("li");
+    li.innerHTML = inputBox.value;
+    listContainer.appendChild(li);
+    let span = document.createElement("span");
+    span.innerHTML = "\u00d7";
+    li.appendChild(span);
+  }
+  inputBox.value = "";
+}
 
-loginLink.addEventListener('click', ()=> {
-  wrapper.classList.remove('active');
-})
+listContainer.addEventListener(
+  "click",
+  function (e) {
+    if (e.target.tagName === "LI") {
+      e.target.classList.toggle("checked");
+      saveData();
+    } else if (e.target.tagName === "SPAN") {
+      e.target.parentElement.remove();
+      saveData();
+    }
+  },
+  false
+);
 
-btnPopup.addEventListener('click', ()=> {
-  wrapper.classList.add('active-popup');
-})
-iconClose.addEventListener('click', ()=> {
-  wrapper.classList.remove('active-popup');
-})
+function saveData() {
+  localStorage.setItem("data", listContainer.innerHTML);
+}
+function showTask() {
+  listContainer.innerHTML = localStorage.getItem("data");
+}
+showTask();
